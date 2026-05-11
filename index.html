@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee 2go Bar AS — Kaffe, stemning og en hyggelig stopp i Flå</title>
+    <meta
+      name="description"
+      content="Coffee 2go Bar AS er en lokal kaffebar i Flå for deg som vil ha god kaffe, noe godt å spise og en hyggelig pause i løpet av dagen."
+    />
+    <style>
+      :root {
+        --bg: #f6efe8;
+        --surface: #fffaf5;
+        --surface-2: #f0e4d7;
+        --text: #2f221b;
+        --muted: #6a5447;
+        --accent: #9b673d;
+        --accent-dark: #7d512f;
+        --line: rgba(47, 34, 27, 0.1);
+        --shadow: 0 20px 50px rgba(56, 35, 23, 0.12);
+        --radius: 24px;
+        --max: 1180px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #f9f4ee 0%, #f3e8dc 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container {
+        width: min(calc(100% - 2rem), var(--max));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(249, 244, 238, 0.86);
+        border-bottom: 1px solid rgba(47, 34, 27, 0.06);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        gap: 1rem;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .brand small {
+        display: block;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.1rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        padding: 5rem 0 3rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(155, 103, 61, 0.12);
+        color: var(--accent-dark);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      h1, h2, h3 {
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 1rem;
+      }
+
+      h1 { font-size: clamp(2.7rem, 6vw, 5rem); }
+      h2 { font-size: clamp(2rem, 4vw, 3rem); }
+      h3 { font-size: 1.2rem; }
+
+      .lead {
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 58ch;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 2rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0.9rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 160ms ease;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .button.primary:hover { background: var(--accent-dark); }
+
+      .button.secondary {
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.65);
+      }
+
+      .hero-card {
+        position: relative;
+        min-height: 480px;
+        border-radius: 32px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(28,17,11,0.1), rgba(28,17,11,0.5)),
+          url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80') center/cover;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-badge {
+        position: absolute;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        background: rgba(255, 250, 245, 0.92);
+        border-radius: 20px;
+        padding: 1rem 1.1rem;
+      }
+
+      .hero-badge strong { display: block; margin-bottom: 0.35rem; }
+      .hero-badge span { color: var(--muted); font-size: 0.95rem; }
+
+      section {
+        padding: 2rem 0 4rem;
+      }
+
+      .section-head {
+        max-width: 60ch;
+        margin-bottom: 2rem;
+      }
+
+      .cards,
+      .feature-grid,
+      .gallery-grid,
+      .info-grid {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .info-grid { grid-template-columns: 1.15fr 0.85fr; }
+
+      .card,
+      .feature,
+      .info-panel {
+        background: rgba(255, 250, 245, 0.82);
+        border: 1px solid rgba(47, 34, 27, 0.08);
+        border-radius: var(--radius);
+        padding: 1.4rem;
+        box-shadow: 0 8px 24px rgba(47, 34, 27, 0.04);
+      }
+
+      .card p,
+      .feature p,
+      .info-panel p,
+      .info-panel li { color: var(--muted); }
+
+      .kicker {
+        display: inline-block;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-dark);
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+      }
+
+      .about-box {
+        background: linear-gradient(135deg, rgba(255,250,245,0.95), rgba(240,228,215,0.9));
+        border-radius: 32px;
+        padding: 2rem;
+        border: 1px solid rgba(47,34,27,0.07);
+      }
+
+      .quote {
+        margin-top: 1.5rem;
+        padding-left: 1rem;
+        border-left: 3px solid rgba(155,103,61,0.35);
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .gallery-item {
+        min-height: 260px;
+        border-radius: 26px;
+        overflow: hidden;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        box-shadow: var(--shadow);
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(24,16,11,0.06), rgba(24,16,11,0.5));
+      }
+
+      .gallery-caption {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 1;
+        color: white;
+        font-weight: 600;
+      }
+
+      ul.clean {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--accent-dark);
+        font-weight: 700;
+        margin-top: 0.8rem;
+      }
+
+      footer {
+        padding: 2rem 0 3rem;
+        border-top: 1px solid rgba(47, 34, 27, 0.08);
+        color: var(--muted);
+      }
+
+      .footer-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .info-grid,
+        .cards,
+        .feature-grid,
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 3.5rem;
+        }
+
+        .hero-card {
+          min-height: 360px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav { align-items: flex-start; }
+        .nav-links { font-size: 0.9rem; }
+        .button { width: 100%; }
+        .hero-actions { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand">
+          Coffee 2go Bar AS
+          <small>Buvatnvegen 61 · 3539 Flå</small>
+        </div>
+        <nav class="nav-links" aria-label="Hovedmeny">
+          <a href="#om">Om oss</a>
+          <a href="#tilbud">Hva vi tilbyr</a>
+          <a href="#besok">Besøk oss</a>
+          <a href="#apningstider">Åpningstider</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Lokal kaffebar i Flå</span>
+            <h1>Kaffe, stemning og en hyggelig stopp i Flå</h1>
+            <p class="lead">
+              Velkommen til Coffee 2go Bar AS — en lokal kaffebar i Flå for deg som vil ha god kaffe,
+              noe godt å spise og en hyggelig pause i løpet av dagen.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#besok">Finn oss</a>
+              <a class="button secondary" href="#om">Se mer</a>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Stemningsbilde av kaffe og café">
+            <div class="hero-badge">
+              <strong>Et naturlig stopp for lokale og gjennomreisende</strong>
+              <span>En enkel, varm og moderne caféopplevelse i Flå.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="om">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Om oss</span>
+            <h2>Et enkelt og hyggelig sted å stikke innom</h2>
+          </div>
+          <div class="about-box">
+            <p>
+              Coffee 2go Bar AS er et lokalt serveringssted i Flå som ønsker å være et enkelt og hyggelig sted å stikke innom — enten du er på gjennomreise, skal møte noen, eller bare vil ta en god kopp kaffe i rolige omgivelser.
+            </p>
+            <p>
+              Hos oss handler det om mer enn bare kaffe. Det handler også om stemning, tilgjengelighet og en god opplevelse for folk som vil ha et trivelig sted å ta en pause.
+            </p>
+            <div class="quote">Moderne nok til å føles gjennomført. Lokal nok til å føles ekte.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tilbud">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Hva vi tilbyr</span>
+            <h2>Enkelt, godt og lett å like</h2>
+            <p class="lead">Førsteversjonen holder tilbudet bevisst bredt og troverdig, uten å dikte opp detaljer som ikke er bekreftet ennå.</p>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <h3>Kaffe og varme drikker</h3>
+              <p>God kaffe og varme drikker for deg som vil starte dagen rolig eller ta en liten pause underveis.</p>
+            </article>
+            <article class="card">
+              <h3>Kalde drikker</h3>
+              <p>Et enkelt og tilgjengelig utvalg for dager der du vil ha noe friskt og lett.</p>
+            </article>
+            <article class="card">
+              <h3>Noe godt å spise</h3>
+              <p>Noe lett å spise og en hyggelig caféopplevelse som passer både korte og litt lengre stopp.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Hvorfor besøke oss</span>
+            <h2>Et sted som skal føles lett å velge</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature">
+              <h3>Hyggelig atmosfære</h3>
+              <p>Et sted som skal føles enkelt, varmt og trivelig.</p>
+            </article>
+            <article class="feature">
+              <h3>Lokal tilstedeværelse</h3>
+              <p>Et serveringssted i Flå som er lett å finne og lett å komme innom.</p>
+            </article>
+            <article class="feature">
+              <h3>Perfekt for en pause</h3>
+              <p>Enten du er på farten eller vil sette deg ned litt, er Coffee 2go Bar et naturlig stopp.</p>
+            </article>
+            <article class="feature">
+              <h3>Moderne og innbydende</h3>
+              <p>Et sted som skal gi et godt førsteinntrykk både på nett og i virkeligheten.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Galleri / stemning</span>
+            <h2>Følelsen av kaffe, ro og et hyggelig stopp</h2>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80')">
+              <div class="gallery-caption">Kaffe og varme toner</div>
+            </div>
+            <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80')">
+              <div class="gallery-caption">Interiør og sitteplasser</div>
+            </div>
+            <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80')">
+              <div class="gallery-caption">Noe godt å spise</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="besok">
+        <div class="container info-grid">
+          <div>
+            <div class="section-head">
+              <span class="kicker">Besøk oss</span>
+              <h2>Lett å finne. Lett å stikke innom.</h2>
+            </div>
+            <div class="info-panel">
+              <h3>Adresse</h3>
+              <p>
+                Buvatnvegen 61<br />
+                3539 Flå
+              </p>
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buvatnvegen+61,+3539+Fl%C3%A5" target="_blank" rel="noreferrer">Åpne i kart ↗</a>
+            </div>
+          </div>
+          <div class="info-panel">
+            <h3>Kontakt</h3>
+            <ul class="clean">
+              <li>Kontaktinformasjon kommer snart.</li>
+              <li>Nettsiden er laget med plass til telefon, e-post og sosiale medier når det er klart.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="apningstider">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Åpningstider</span>
+            <h2>Praktisk info kommer på plass</h2>
+          </div>
+          <div class="info-panel">
+            <p><strong>Åpningstider kommer snart.</strong></p>
+            <p>Førsteversjonen holder denne delen åpen til bekreftet informasjon er på plass, i stedet for å gjette.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <strong>Coffee 2go Bar AS</strong><br />
+          Buvatnvegen 61, 3539 Flå
+        </div>
+        <div>Første nettsideutkast · designet for å være troverdig, varm og videreutviklingsklar</div>
+      </div>
+    </footer>
+  </body>
+</html>
